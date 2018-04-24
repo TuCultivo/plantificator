@@ -5,36 +5,41 @@ from skimage.segmentation import slic
 
 def retrieve_features(image, image_hsv):
     features = []
-    features.append(get_deviation(image))
-    features.append(get_deviation(image_hsv))
+    #features.append(get_deviation(image))
+    #features.append(get_deviation(image_hsv))
     means = get_means(image)
-    #means[1]=means[1]*2
+    means[1]=means[1]*2
     features.extend(means)
-    features.append(means[1]*255)
-    means_hsv = get_means(image_hsv)
-    features.extend(means_hsv)
-    normalized_means = get_normalized_means(image)
-    for i in range(3):
+    mean_combinated = get_mean_combinated(image)
+    features.append(mean_combinated)
+    #features.append(means[1]*255)
+    #means_hsv = get_means(image_hsv)
+    #features.extend(means_hsv)
+    #normalized_means = get_normalized_means(image)
+    for i in range(0):
         if(type(normalized_means[i]) != np.uint8):
             features.append(0)
         else:
             features.append(normalized_means[0])
-    normalized_means_hsv = get_normalized_means(image_hsv)
-    for i in range(3):
+    #normalized_means_hsv = get_normalized_means(image_hsv)
+    for i in range(0):
         if(type(normalized_means_hsv[i]) != np.uint8):
             features.append(0)
         else:
             features.append(normalized_means_hsv[0])
-    ranges = get_ranges(image)
-    features.extend(ranges)
-    ranges_hsv = get_ranges(image_hsv)
-    features.extend(ranges_hsv)
+    #ranges = get_ranges(image)
+    #features.extend(ranges)
+    #ranges_hsv = get_ranges(image_hsv)
+    #features.extend(ranges_hsv)
 
 
     return features
 
 def get_deviation(image):
     return np.std(image)/100
+
+def get_mean_combinated(image):
+    return np.mean((image[:,0] + image[:,1] + image[:,2]) / 765)
 
 def get_means(image):
     R = np.mean(image[:,2])/255

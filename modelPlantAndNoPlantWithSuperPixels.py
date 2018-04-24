@@ -13,7 +13,7 @@ if (__name__ == "__main__"):
     x = []
     y = []
     for i in range(1,251):
-        if(i < 51 or i > 192):
+        if(i < 111 or i > 192):
             image = cv2.resize(cv2.imread("datasetSantaElena/" + str(i) + ".jpg"),(400,400))
             imageBYW = cv2.resize(cv2.imread("datasetSantaElenaBlanco/" + str(i) + ".jpg"),(400,400))
             #imageBYW = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
@@ -37,6 +37,7 @@ if (__name__ == "__main__"):
     y = np.asarray(y)
     print(np.sum(y))
     print(len(y))
-    model = svm.SVC(kernel='poly', degree=3, coef0=1)
+    #model = svm.SVC(kernel='poly', degree=2, coef0=1)
+    model = svm.SVC()
     model.fit(x, y.reshape((x.shape[0])))
     joblib.dump(model, 'model.pkl')
