@@ -23,7 +23,7 @@ visual_recognition = VisualRecognitionV3(
 # print(predict)
 #for files in ['IMG_20180414_113331830.jpg']:
 #for files in ["4.jpg"]:
-for files in os.listdir('output/'):
+def ibmClasificator(files):
 	file_path = './output/'+ files
 	print(file_path)
 	with open(file_path, 'rb') as images_file:
@@ -35,12 +35,8 @@ for files in os.listdir('output/'):
 			}))
 	#print(classes)
 	predict = classes["images"][0]["classifiers"][0]["classes"][0]["class"]
-	print(predict)
+	return predict
 ######################### mostrar cada imagen ##########################
-	image = cv2.imread(file_path)
-	cv2.imshow(predict, image)
-	cv2.waitKey()
-	cv2.destroyAllWindows()
 
 ########### posts de simulacion de sensores ####################
 #r = requests.post("https://tucultivo.herokuapp.com/sensors/?/values", data={"sensor": {"value": 27}})
