@@ -1,11 +1,11 @@
 import numpy as np
 import cv2
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 from skimage.segmentation import slic
 from skimage.segmentation import mark_boundaries
 from sklearn import svm
 from sklearn.externals import joblib
-import features as tf
+import features as ft
 import os
 import sys
 
@@ -24,7 +24,7 @@ if(__name__ == "__main__"):
         image_hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
         segments = slic(image, n_segments = 100, sigma = 5)
         for (i, segVal) in enumerate(np.unique(segments)):
-            features = tf.retrieve_features(image[segments==segVal], image_hsv[segments==segVal])
+            features = ft.retrieve_features(image[segments==segVal], image_hsv[segments==segVal])
             output = model.predict(np.asarray(features).reshape(1, len(features)))
             if(output==0):
                 #print("is not plant")
