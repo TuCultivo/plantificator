@@ -27,14 +27,21 @@ if(__name__ == "__main__"):
             features = ft.retrieve_features(image[segments==segVal], image_hsv[segments==segVal])
             output = model.predict(np.asarray(features).reshape(1, len(features)))
             if(output==0):
-                #print("is not plant")
+                #print("is not plant")                                                                                                                                                                                                                                        
                 image[segments==segVal]=255
-            #else:
-                #print("is plant")
-            # mask = np.zeros(image.shape[:2], dtype = "uint8")
-            # mask[segments == segVal] = 255
-            # cv2.imshow("superPixel", cv2.bitwise_and(image, image, mask = mask))
-            # cv2.waitKey()
-            ### numero de pixeles en cada superpixel ###
-            #print(len(image[segments==segVal]))
+            #else:                                                                                                                                                                                                                                                            
+                #print("is plant")                                                                                                                                                                                                                                            
+            # mask = np.zeros(image.shape[:2], dtype = "uint8")                                                                                                                                                                                                               
+            # mask[segments == segVal] = 255                                                                                                                                                                                                                                  
+            # cv2.imshow("superPixel", cv2.bitwise_and(image, image, mask = mask))                                                                                                                                                                                            
+            # cv2.waitKey()                                                                                                                                                                                                                                                   
+            ### numero de pixeles en cada superpixel ###                                                                                                                                                                                                                      
+            #print(len(image[segments==segVal]))                                                                                                                                                                                                                              
         cv2.imwrite(path_output + image_name, image)
+        try:
+            os.remove(path_testeo+image_name)
+        except: pass
+
+
+
+
