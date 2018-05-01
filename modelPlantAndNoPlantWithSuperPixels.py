@@ -25,9 +25,10 @@ if (__name__ == "__main__"):
             imageBYW = cv2.resize(cv2.imread(path_datasetBlanco + str(i) + ".jpg"),(400,400))
             #imageBYW = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
             image_hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
+            image_hls = cv2.cvtColor(image, cv2.COLOR_BGR2HLS)
             segments = slic(image, n_segments = 100, sigma = 5)
             for (j, segVal) in enumerate(np.unique(segments)):
-                features = ft.retrieve_features(image[segments==segVal], image_hsv[segments==segVal])
+                features = ft.retrieve_features(image[segments==segVal], image_hsv[segments==segVal], image_hls[segments==segVal])
                 x.append(features)
                 if(np.mean(imageBYW[segments==segVal]) > 200):
                     y.append(0)
