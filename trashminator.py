@@ -28,18 +28,18 @@ if(__name__ == "__main__"):
         image_hls = cv2.cvtColor(image, cv2.COLOR_BGR2HLS)
         segments = slic(image, n_segments = 100, sigma = 5)
         for (i, segVal) in enumerate(np.unique(segments)):
-            if(i >= 40):
+            if(i == i):
                 #print(segVal.shape)
                 features = ft.retrieve_features(image[segments==segVal], image_hsv[segments==segVal], image_hls[segments==segVal])
                 output = model.predict(np.asarray(features).reshape(1, len(features)))
                 output2 = model.predict_proba(np.asarray(features).reshape(1, len(features)))
-                mask = np.zeros(image.shape[:2], dtype = "uint8")
-                mask[segments == segVal] = 255
-                cv2.imshow(str(i), cv2.bitwise_and(image, image, mask = mask))
-                cv2.waitKey()
+                # mask = np.zeros(image.shape[:2], dtype = "uint8")
+                # mask[segments == segVal] = 255
+                # cv2.imshow(str(i), cv2.bitwise_and(image, image, mask = mask))
+                # cv2.waitKey()
                 #print(i, output2)
                 #image[segments==segVal]=255
-                if(output2[0][0]>=0.7):
+                if(output2[0][0]>=0.65):
                     #print("is not plant")
                     image[segments==segVal]=255
                 #else:

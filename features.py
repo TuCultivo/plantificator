@@ -25,6 +25,7 @@ def retrieve_features(image, image_hsv, image_hls):
     #features.append(means_hsv[0])
     #features.append(means_hsv[2])
     means_hls = get_means(image_hls)
+    #features.append(means_hls[0])
     features.extend(means_hls)
     #normalized_means = get_normalized_means(image)
     for i in range(0):
