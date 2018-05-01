@@ -41,10 +41,16 @@ if (__name__ == "__main__"):
                 #if(np.mean(imageBYW[segments==segVal]) > 188 and np.mean(imageBYW[segments==segVal] < 190):
                 #    print(np.mean(imageBYW[segments==segVal])
     x = np.asarray(x)
+
+    # with open('juan.pkl', 'wb') as f:
+    #     pickle.dump(x, f)
+    #
+    # with open('juan.pkl', 'rb') as f:
+    #     x = pickle.load(f)
     y = np.asarray(y)
     print(np.sum(y))
     print(len(y))
-    #model = svm.SVC(kernel='poly', degree=2, coef0=1)
-    model = svm.SVC()
+    model = svm.SVC(kernel='poly', degree=3, coef0=1, probability = True)
+    #model = svm.SVC(kernel = 'rbf', probability = True)
     model.fit(x, y.reshape((x.shape[0])))
     joblib.dump(model, path_model)
