@@ -58,13 +58,12 @@ def clasify_images(preprocessed_images):
     				'classifier_ids': ['pestsClasificator_501793644'],
     				'threshold': 0.6
     			}))
-    	#print(classes)
         predict = classes["images"][0]["classifiers"][0]["classes"][0]["class"]
-        print(predict)
         image = cv2.imread(tmp.name + ".jpg")
         cv2.imshow(predict, image)
         cv2.waitKey()
         cv2.destroyAllWindows()
+        return predict
 
 
 if( __name__ == "__main__"):
@@ -75,4 +74,4 @@ if( __name__ == "__main__"):
     images = load_images(path_home)
     preprocessed_images = preprocess_images(images, path_home)
     result = clasify_images(preprocessed_images)
-    #mostrar_resultado()
+    print(result)
