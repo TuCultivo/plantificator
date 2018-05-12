@@ -7,9 +7,8 @@ from PIL import Image
 from PIL import ImageStat
 import os
 import tempfile
-import mahotas as mt
 
-def retrieve_features(image, image_hsv, image_hls, superPixel):
+def retrieve_features(image, image_hsv, image_hls):
     features = []
     features.append(get_deviation(image))
     features.append(get_deviation(image_hsv))
